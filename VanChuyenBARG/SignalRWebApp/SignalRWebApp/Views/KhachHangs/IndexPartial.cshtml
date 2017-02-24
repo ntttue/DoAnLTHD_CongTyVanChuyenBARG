@@ -1,0 +1,49 @@
+﻿@model IEnumerable<SignalRWebApp.Models.KhachHang>
+
+@Html.Hidden("NotifierEntity", (object)ViewBag.NotifierEntity)
+
+<table class="table">
+    <tr>
+        <th>Họ tên khách</th>
+        <th>SĐT</th>
+        <th>Địa chỉ đón</th>
+        <th>Loại xe</th>
+        <th>Ghi chú</th>
+        <th>Thời điểm đặt</th>
+        <th>Tình trạng</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChiDon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoaiXe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GhiChu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThoiDiemDat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TinhTrang)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
