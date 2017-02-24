@@ -16,7 +16,7 @@ namespace SignalRWebApp
  
         protected void Application_Start()
         {
-            using (var context = new SignaRTestContext())
+            using (var context = new EntityBase())
                 SqlConnectionString = context.Database.Connection.ConnectionString;
         
             AreaRegistration.RegisterAllAreas();
