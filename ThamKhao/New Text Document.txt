@@ -1,0 +1,5 @@
+https://github.com/techbrij/Flot-SignalR-ASPNET-MVC
+http://techbrij.com/database-change-notifications-asp-net-signalr-sqldependency
+http://techbrij.com/realtime-google-maps-bing-xml-signalr-file-changes
+
+https://www.youtube.com/watch?v=30m-7wpmbrc
