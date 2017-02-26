@@ -8,11 +8,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using SignalRWebApp.Models;
+using APIServer.Models;
 
-namespace SignalRWebApp.Controllers
+namespace APIServer.Controllers
 {
-    public class APIKhachHangController : ApiController
+    public class KhachHangsController : ApiController
     {
         private VanChuyenBargEntities db = new VanChuyenBargEntities();
 
