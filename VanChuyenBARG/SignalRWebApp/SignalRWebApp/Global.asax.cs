@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Http;
 
 namespace SignalRWebApp
 {
@@ -21,9 +22,10 @@ namespace SignalRWebApp
         
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
- 
+            
             if (!String.IsNullOrEmpty(SqlConnectionString))
                 SqlDependency.Start(SqlConnectionString);
         }
