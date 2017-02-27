@@ -14,10 +14,10 @@ namespace AppDienThoaiVien
 {
     public partial class frmGhiNhanThongTin : Form
     {
+        private KhachHang kh = new KhachHang();
         public frmGhiNhanThongTin()
         {
             InitializeComponent();
-            callServer();
         }
         public void callServer()
         {
@@ -29,10 +29,7 @@ namespace AppDienThoaiVien
                     c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                     string url = "http://localhost:4771/api/KhachHangs";
-                    var response = c.PostAsJsonAsync(url, new KhachHang
-                    {
-                        HoTen = "post from client"
-                    }).Result;
+                    var response = c.PostAsJsonAsync(url, kh).Result;
 
                     MessageBox.Show(response.ToString());
 
@@ -56,8 +53,19 @@ namespace AppDienThoaiVien
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Lỗi rầu!!!" + ex.Message);
             }
+        }
+
+        private void btnGui_Click(object sender, EventArgs e)
+        {
+            kh.HoTen = this.txtHoTen.Text;
+            kh.SDT = this.txtSDT.Text;
+            kh.DiaChiDon = this.txtDiaChi.Text;
+            kh.LoaiXe = this.rdoRremium.Checked == true ? 1 : 0;
+            kh.GhiChu = this.txtGhiChu.Text;
+            kh.ThoiDiemDat = DateTime.Now;
+            this.callServer();
         }
     }
 

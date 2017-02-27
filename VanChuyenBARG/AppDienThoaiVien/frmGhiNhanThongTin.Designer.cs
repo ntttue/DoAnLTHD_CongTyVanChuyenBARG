@@ -36,12 +36,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtSDT = new System.Windows.Forms.TextBox();
             this.txtHoTen = new System.Windows.Forms.TextBox();
-            this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.rdoThuong = new System.Windows.Forms.RadioButton();
             this.rdoRremium = new System.Windows.Forms.RadioButton();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.btnGui = new System.Windows.Forms.Button();
+            this.txtDiaChi = new System.Windows.Forms.TextBox();
+            this.txtGhiChu = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -53,6 +55,8 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.22756F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.77244F));
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.txtGhiChu, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
@@ -61,18 +65,19 @@
             this.tableLayoutPanel1.Controls.Add(this.txtHoTen, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtDiaChi, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(639, 349);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(639, 400);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -145,15 +150,6 @@
             this.txtHoTen.Size = new System.Drawing.Size(443, 27);
             this.txtHoTen.TabIndex = 2;
             // 
-            // txtDiaChi
-            // 
-            this.txtDiaChi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDiaChi.Location = new System.Drawing.Point(191, 161);
-            this.txtDiaChi.Margin = new System.Windows.Forms.Padding(4, 20, 4, 5);
-            this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(443, 27);
-            this.txtDiaChi.TabIndex = 3;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.rdoThuong);
@@ -189,31 +185,64 @@
             this.rdoRremium.Text = "Xe PREMIUM";
             this.rdoRremium.UseVisualStyleBackColor = true;
             // 
+            // btnGui
+            // 
+            this.btnGui.Location = new System.Drawing.Point(144, 4);
+            this.btnGui.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnGui.Name = "btnGui";
+            this.btnGui.Size = new System.Drawing.Size(149, 49);
+            this.btnGui.TabIndex = 11;
+            this.btnGui.Text = "Gửi thông tin";
+            this.btnGui.UseVisualStyleBackColor = true;
+            this.btnGui.Click += new System.EventHandler(this.btnGui_Click);
+            // 
+            // txtDiaChi
+            // 
+            this.txtDiaChi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtDiaChi.Location = new System.Drawing.Point(191, 161);
+            this.txtDiaChi.Margin = new System.Windows.Forms.Padding(4, 20, 4, 5);
+            this.txtDiaChi.Name = "txtDiaChi";
+            this.txtDiaChi.Size = new System.Drawing.Size(443, 27);
+            this.txtDiaChi.TabIndex = 3;
+            // 
+            // txtGhiChu
+            // 
+            this.txtGhiChu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtGhiChu.Location = new System.Drawing.Point(191, 286);
+            this.txtGhiChu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtGhiChu.Multiline = true;
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(443, 50);
+            this.txtGhiChu.TabIndex = 14;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Location = new System.Drawing.Point(5, 281);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Padding = new System.Windows.Forms.Padding(0, 0, 40, 0);
+            this.label5.Size = new System.Drawing.Size(177, 60);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Ghi chú";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.btnGui);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(187, 281);
+            this.panel2.Location = new System.Drawing.Point(187, 342);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(451, 67);
-            this.panel2.TabIndex = 10;
-            // 
-            // btnGui
-            // 
-            this.btnGui.Location = new System.Drawing.Point(151, 7);
-            this.btnGui.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnGui.Name = "btnGui";
-            this.btnGui.Size = new System.Drawing.Size(149, 49);
-            this.btnGui.TabIndex = 6;
-            this.btnGui.Text = "Gửi thông tin";
-            this.btnGui.UseVisualStyleBackColor = true;
+            this.panel2.Size = new System.Drawing.Size(451, 69);
+            this.panel2.TabIndex = 16;
             // 
             // frmGhiNhanThongTin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(639, 349);
+            this.ClientSize = new System.Drawing.Size(639, 400);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -239,12 +268,14 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtSDT;
         private System.Windows.Forms.TextBox txtHoTen;
-        private System.Windows.Forms.TextBox txtDiaChi;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton rdoThuong;
         private System.Windows.Forms.RadioButton rdoRremium;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnGui;
+        private System.Windows.Forms.TextBox txtGhiChu;
+        private System.Windows.Forms.TextBox txtDiaChi;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

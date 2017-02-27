@@ -27,7 +27,15 @@
                 @Html.DisplayFor(modelItem => item.DiaChiDon)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LoaiXe)
+                @*@Html.DisplayFor(modelItem => item.LoaiXe)*@
+                @if (item.LoaiXe == 1 )
+                {
+                    <span>PREMIUM</span>
+                }
+                else
+                {
+                    <span>Thường</span>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.GhiChu)
