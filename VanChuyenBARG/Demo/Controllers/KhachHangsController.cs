@@ -1,41 +1,25 @@
-﻿using SignalRWebApp.Models;
-using SignalRWebApp.SqlServerNotifier;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Demo.Models;
 
-namespace SignalRWebApp.Controllers
+namespace Demo.Controllers
 {
     public class KhachHangsController : Controller
     {
-        //// GET: KhachHangs
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
         private VanChuyenBargEntities db = new VanChuyenBargEntities();
 
-        public async Task<ActionResult> Index()
+        // GET: KhachHangs
+        public ActionResult Index()
         {
-            var collection = db.KhachHangs;
-            ViewBag.NotifierEntity = db.GetNotifierEntity<KhachHang>(collection).ToJson();
-            return View(await collection.ToListAsync());
+            return View(db.KhachHangs.ToList());
         }
 
-        public async Task<ActionResult> IndexPartial()
-        {
-            var collection = db.KhachHangs;
-            ViewBag.NotifierEntity = db.GetNotifierEntity<KhachHang>(collection).ToJson();
-            return PartialView(await collection.ToListAsync());
-        }
-        
-        
         // GET: KhachHangs/Details/5
         public ActionResult Details(int? id)
         {
@@ -48,6 +32,29 @@ namespace SignalRWebApp.Controllers
             {
                 return HttpNotFound();
             }
+            return View(khachHang);
+        }
+
+        // GET: KhachHangs/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: KhachHangs/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "id,HoTen,SDT,DiaChiDon,GhiChu,LoaiXe,ThoiDiemDat,TinhTrang")] KhachHang khachHang)
+        {
+            if (ModelState.IsValid)
+            {
+                db.KhachHangs.Add(khachHang);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
             return View(khachHang);
         }
 
@@ -82,6 +89,32 @@ namespace SignalRWebApp.Controllers
             return View(khachHang);
         }
 
+        // GET: KhachHangs/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            KhachHang khachHang = db.KhachHangs.Find(id);
+            if (khachHang == null)
+            {
+                return HttpNotFound();
+            }
+            return View(khachHang);
+        }
+
+        // POST: KhachHangs/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            KhachHang khachHang = db.KhachHangs.Find(id);
+            db.KhachHangs.Remove(khachHang);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -91,5 +124,4 @@ namespace SignalRWebApp.Controllers
             base.Dispose(disposing);
         }
     }
-
 }

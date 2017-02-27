@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRWebApp", "SignalRWeb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIServer", "APIServer\APIServer.csproj", "{30ED1C0C-0C0D-4F3D-84E7-8323D9CF476E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{4779EB9D-F8E1-448A-8EAB-74C225DD99BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{30ED1C0C-0C0D-4F3D-84E7-8323D9CF476E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30ED1C0C-0C0D-4F3D-84E7-8323D9CF476E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30ED1C0C-0C0D-4F3D-84E7-8323D9CF476E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4779EB9D-F8E1-448A-8EAB-74C225DD99BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4779EB9D-F8E1-448A-8EAB-74C225DD99BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4779EB9D-F8E1-448A-8EAB-74C225DD99BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4779EB9D-F8E1-448A-8EAB-74C225DD99BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
