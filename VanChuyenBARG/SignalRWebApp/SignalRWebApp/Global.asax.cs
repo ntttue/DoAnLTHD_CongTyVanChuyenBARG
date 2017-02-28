@@ -7,7 +7,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Http;
 
 namespace SignalRWebApp
 {
@@ -17,15 +16,14 @@ namespace SignalRWebApp
  
         protected void Application_Start()
         {
-            using (var context = new EntityBase())
+            using (var context = new SignaRTestContext())
                 SqlConnectionString = context.Database.Connection.ConnectionString;
         
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            
+ 
             if (!String.IsNullOrEmpty(SqlConnectionString))
                 SqlDependency.Start(SqlConnectionString);
         }

@@ -10,7 +10,7 @@ namespace SignalRWebApp.Controllers
 {
     public class ProductsController : Controller
     {
-        private EntityBase db = new EntityBase();
+        private SignaRTestContext db = new SignaRTestContext();
 
         public async Task<ActionResult> Index()
         {

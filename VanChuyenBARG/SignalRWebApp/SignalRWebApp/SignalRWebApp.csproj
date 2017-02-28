@@ -190,28 +190,13 @@
       <DependentUpon>BargEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\DbContextExtensions.cs" />
-    <Compile Include="Models\EntityBase.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntityBase.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityBase.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntityBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\EntityBase.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntityBase.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Models\KhachHang.cs">
       <DependentUpon>BargEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ObjectQueryExtensions.cs" />
-    <Compile Include="Models\Product.cs">
-      <DependentUpon>EntityBase.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\SignaRTestContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerNotifier\NotifierEntity.cs" />
     <Compile Include="SqlServerNotifier\NotifierEntityExtentions.cs" />
@@ -237,10 +222,6 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <EntityDeploy Include="Models\EntityBase.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EntityBase.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <Content Include="Models\BargEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BargEntity.edmx</DependentUpon>
@@ -251,9 +232,6 @@
       <DependentUpon>BargEntity.edmx</DependentUpon>
       <LastGenOutput>BargEntity.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\EntityBase.edmx.diagram">
-      <DependentUpon>EntityBase.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\BargEntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BargEntity.Designer.cs</LastGenOutput>
@@ -262,16 +240,6 @@
       <DependentUpon>BargEntity.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
-    <Content Include="Models\EntityBase.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EntityBase.edmx</DependentUpon>
-      <LastGenOutput>EntityBase.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\EntityBase.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EntityBase.edmx</DependentUpon>
-      <LastGenOutput>EntityBase.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
