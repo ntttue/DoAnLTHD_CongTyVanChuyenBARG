@@ -65,6 +65,7 @@ namespace AppDienThoaiVien
             kh.LoaiXe = this.rdoRremium.Checked == true ? 1 : 0;
             kh.GhiChu = this.txtGhiChu.Text;
             kh.ThoiDiemDat = DateTime.Now;
+            kh.TinhTrang = "Chưa xử lý";
             this.callServer();
         }
     }

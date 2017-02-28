@@ -25,89 +25,74 @@
         padding-left: 10px;
     }
 </style>
-<div>
-    <h4>Khách hàng</h4>
-    <hr />
-    
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.HoTen)
-        </dt>
+<div class="row panel panel-default">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Khách hàng</h3>
 
-        <dd>
-            @Html.DisplayFor(model => model.HoTen)
-        </dd>
+            </div>
+            <div class="panel-body ">
+                <div class="col-sm-12">
+                    <dl class="dl-horizontal col-sm-6">
+                        <dt>Họ tên: </dt>
+                        <dd>@Html.DisplayFor(model => model.HoTen)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SDT)
-        </dt>
+                        <dt>Địa chỉ đón: </dt>
+                        <dd>@Html.DisplayFor(model => model.DiaChiDon)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.SDT)
-        </dd>
+                        <dt>Ghi chú:</dt>
+                        <dd>@Html.DisplayFor(model => model.GhiChu)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaChiDon)
-        </dt>
+                        <dt>Thời điểm đặt: </dt>
+                        <dd>@Html.DisplayFor(model => model.ThoiDiemDat)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DiaChiDon)
-        </dd>
+                    </dl>
+                    <dl class="dl-horizontal col-sm-6">
+                        <dt>SĐT: </dt>
+                        <dd>@Html.DisplayFor(model => model.SDT)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.GhiChu)
-        </dt>
+                        <dt>Loại xe: </dt>
+                        <dd>
+                            @if (Model.LoaiXe == 1)
+                            {
+                            <span>PREMIUM</span>
+                            }
+                            else
+                            {
+                            <span>Thường</span>
+                            }
+                        </dd>
+                        <dt>Tình trạng: </dt>
+                        <dd>@Html.DisplayFor(model => model.TinhTrang)</dd>
+                    </dl>
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.GhiChu)
-        </dd>
+                <div class="col-sm-12 text-center">
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.id }, htmlAttributes: new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Trở về danh sách", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiXe)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LoaiXe)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ThoiDiemDat)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ThoiDiemDat)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TinhTrang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TinhTrang)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-<div class="row-fluid">
-    <div id="floating-panel">
-        <input id="address" type="textbox" value="@Model.DiaChiDon">
-        <input id="submit" type="button" value="Geocode">
+        </div>
     </div>
+    <div class="row-fluid">
+        <div id="floating-panel">
+            <input id="address" type="textbox" value="@Model.DiaChiDon">
+            <input id="submit" type="button" value="Geocode">
 
-    <h2>Map</h2>
-    <div id="map" style="width: auto; height:500px;">
+            <h2>Map</h2>
+            <div id="map" style="width: auto; height:600px;">
 
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 17,
+            zoom: 18,
             center: { lat: -34.397, lng: 150.644 }
         });
         var geocoder = new google.maps.Geocoder();

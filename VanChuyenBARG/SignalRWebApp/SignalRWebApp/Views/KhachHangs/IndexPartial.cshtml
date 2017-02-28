@@ -47,8 +47,9 @@
                 @Html.DisplayFor(modelItem => item.TinhTrang)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @*<a class="btn btn-primary" href="/KhachHangs/Details/26">Tìm xe</a>*@
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.id }, htmlAttributes: new { @class = "btn btn-primary" })*@
+                @Html.ActionLink("Tìm xe", "Details", new { id = item.id, controller = "KhachHangs" }, htmlAttributes: new { @class = "btn btn-primary" , target = "_blank" }) 
                 @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
             </td>
         </tr>
