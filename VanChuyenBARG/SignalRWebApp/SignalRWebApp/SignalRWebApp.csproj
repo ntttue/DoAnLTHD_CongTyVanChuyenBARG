@@ -197,6 +197,7 @@
     <Compile Include="Models\ObjectQueryExtensions.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\SignaRTestContext.cs" />
+    <Compile Include="Models\VCBargContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerNotifier\NotifierEntity.cs" />
     <Compile Include="SqlServerNotifier\NotifierEntityExtentions.cs" />

@@ -19,7 +19,7 @@ namespace SignalRWebApp.Controllers
         //    return View();
         //}
 
-        private VanChuyenBargEntities db = new VanChuyenBargEntities();
+        private VCBargContext db = new VCBargContext();
 
         public async Task<ActionResult> Index()
         {
