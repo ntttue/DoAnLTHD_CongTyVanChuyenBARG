@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="a99a5b7d36e240e1ac7a06863a0ff68f" Name="Diagram1">
         <EntityTypeShape EntityType="VanChuyenBargModel.KhachHang" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VanChuyenBargModel.TaiXe" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

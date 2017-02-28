@@ -4,9 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="VanChuyenBargModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'VanChuyenBarg.dbo.KhachHang' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+    <Schema Namespace="VanChuyenBargModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="KhachHang">
           <Key>
             <PropertyRef Name="id" />
@@ -20,22 +18,21 @@ warning 6002: The table/view 'VanChuyenBarg.dbo.KhachHang' does not have a prima
           <Property Name="ThoiDiemDat" Type="datetime" />
           <Property Name="TinhTrang" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="TaiXe">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lat" Type="numeric" Precision="12" Scale="9" />
+          <Property Name="Lng" Type="numeric" Precision="12" Scale="9" />
+          <Property Name="TrangThai" Type="bit" />
+        </EntityType>
         <EntityContainer Name="VanChuyenBargModelStoreContainer">
-          <EntitySet Name="KhachHang" EntityType="Self.KhachHang" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [KhachHang].[id] AS [id], 
-    [KhachHang].[HoTen] AS [HoTen], 
-    [KhachHang].[SDT] AS [SDT], 
-    [KhachHang].[DiaChiDon] AS [DiaChiDon], 
-    [KhachHang].[GhiChu] AS [GhiChu], 
-    [KhachHang].[LoaiXe] AS [LoaiXe], 
-    [KhachHang].[ThoiDiemDat] AS [ThoiDiemDat], 
-    [KhachHang].[TinhTrang] AS [TinhTrang]
-    FROM [dbo].[KhachHang] AS [KhachHang]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaiXe" EntityType="Self.TaiXe" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="VanChuyenBargModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -54,7 +51,18 @@ warning 6002: The table/view 'VanChuyenBarg.dbo.KhachHang' does not have a prima
         </EntityType>
         <EntityContainer Name="VanChuyenBargEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+          <EntitySet Name="TaiXes" EntityType="VanChuyenBargModel.TaiXe" />
         </EntityContainer>
+        <EntityType Name="TaiXe">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lat" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="Lng" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="TrangThai" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -72,6 +80,17 @@ warning 6002: The table/view 'VanChuyenBarg.dbo.KhachHang' does not have a prima
                 <ScalarProperty Name="LoaiXe" ColumnName="LoaiXe" />
                 <ScalarProperty Name="ThoiDiemDat" ColumnName="ThoiDiemDat" />
                 <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaiXes">
+            <EntityTypeMapping TypeName="VanChuyenBargModel.TaiXe">
+              <MappingFragment StoreEntitySet="TaiXe">
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

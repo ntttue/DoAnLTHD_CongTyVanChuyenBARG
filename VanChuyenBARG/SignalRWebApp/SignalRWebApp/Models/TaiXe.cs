@@ -12,15 +12,12 @@ namespace SignalRWebApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class KhachHang:EntityBase
+    public partial class TaiXe
     {
         public int id { get; set; }
         public string HoTen { get; set; }
-        public string SDT { get; set; }
-        public string DiaChiDon { get; set; }
-        public string GhiChu { get; set; }
-        public Nullable<int> LoaiXe { get; set; }
-        public Nullable<System.DateTime> ThoiDiemDat { get; set; }
-        public string TinhTrang { get; set; }
+        public Nullable<decimal> Lat { get; set; }
+        public Nullable<decimal> Lng { get; set; }
+        public Nullable<bool> TrangThai { get; set; }
     }
 }
