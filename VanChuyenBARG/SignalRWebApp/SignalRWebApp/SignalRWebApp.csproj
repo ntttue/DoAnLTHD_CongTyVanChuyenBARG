@@ -170,6 +170,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhachHangsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\TaiXesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -283,6 +284,11 @@
     <Content Include="Views\KhachHangs\IndexPartial.cshtml" />
     <Content Include="Views\KhachHangs\Edit.cshtml" />
     <Content Include="Views\KhachHangs\Details.cshtml" />
+    <Content Include="Views\TaiXes\Create.cshtml" />
+    <Content Include="Views\TaiXes\Delete.cshtml" />
+    <Content Include="Views\TaiXes\Details.cshtml" />
+    <Content Include="Views\TaiXes\Edit.cshtml" />
+    <Content Include="Views\TaiXes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
