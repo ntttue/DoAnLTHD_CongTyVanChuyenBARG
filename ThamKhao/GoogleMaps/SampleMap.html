@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyD0X4v7eqMFcWCR-VZAJwEMfb47id9IZao">
+    </script>
+    <script type="text/javascript">
+	  var map;
+	  var MarkerData = [{"Name":"Penn Station","Latitude":40.75058,"Longitude":-73.99358,"LocationType":"Station"},
+	  				  {"Name":"Empire State Building","Latitude":40.748039,"Longitude":-73.985753,"LocationType":"Attraction"},
+					  {"Name":"Times Square","Latitude":40.756631,"Longitude":-73.988369,"LocationType":"Attraction"},
+					  {"Name":"Central Park","Latitude":40.770641,"Longitude":-73.974196,"LocationType":"Attraction"},
+					  {"Name":"Crowne Plaza Times Square","Latitude":40.760342,"Longitude":-73.98482,"LocationType":"Hotel"},
+					  {"Name":"Sheraton New York Hotel ","Latitude":40.739714,"Longitude":-73.989315,"LocationType":"Hotel"}]
+					  
+      function initialize() {
+        var myOptions = {
+          center: new google.maps.LatLng(40.756631,-73.988369),
+          zoom: 14,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        	map = new google.maps.Map(document.getElementById("map_canvas"),
+            myOptions);
+	
+		
+		for (i=0;i<MarkerData.length;i++){
+			var image;
+			if (MarkerData[i].LocationType == "Station") {
+            	image = 'images/train.png'; 
+			} else if (MarkerData[i].LocationType == "Hotel") {
+				image = 'images/lodging.png'; 
+			}
+			else if (MarkerData[i].LocationType == "Attraction") {
+				image = 'images/monument.png'; 
+			}		
+		
+			var location = new google.maps.LatLng(MarkerData[i].Latitude,MarkerData[i].Longitude);
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map,
+				icon: image
+            });
+			
+			var title = 'Location : ' + MarkerData[i].Name;
+            marker.setTitle(title);
+			
+			//attach message 
+            var msg = 'Location : ' + MarkerData[i].Name + '<br/> ';
+			msg = msg + 'Location Type : ' + MarkerData[i].LocationType + '<br/> ';
+            attachMessage(marker, msg);
+		 }
+      }
+	  
+	function attachMessage(marker, msg) {
+		var infowindow = new google.maps.InfoWindow({
+			content: msg,
+			size: new google.maps.Size(120, 150)
+		});
+		google.maps.event.addListener(marker, 'click', function () {
+			infowindow.open(map, marker);
+		});
+	}
+    </script>
+  </head>
+  <body>
+    <div id="container" class="shadow">
+        <div id="map_canvas"></div>
+        <div id="sidebar">
+            <div class="row">
+                <label> Enter Address in and around Newyork</label>
+                <input type="text" id="txtAddress" class="text" />
+                <img src="images/search.png" border="0" width="24" height="24" style="vertical-align:middle;"  />
+				<span> 350 5th Ave, New York, NY 10118<span>
+            </div>
+            <div class="separator"></div>
+			<div class="row">
+				<label>Store 1<label><br/>
+				<span> Address Here<span>
+            </div>
+            <div class="separator"></div>
+        </div>
+    </div>
+  </body>
+</html>

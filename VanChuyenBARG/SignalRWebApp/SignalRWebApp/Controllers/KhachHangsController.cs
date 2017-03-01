@@ -6,20 +6,12 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
 
 namespace SignalRWebApp.Controllers
 {
     public class KhachHangsController : Controller
     {
-        //// GET: KhachHangs
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
         private VCBargContext db = new VCBargContext();
         private VanChuyenBargEntities entityBarg = new VanChuyenBargEntities();
 
@@ -36,13 +28,13 @@ namespace SignalRWebApp.Controllers
             ViewBag.NotifierEntity = db.GetNotifierEntity<KhachHang>(collection).ToJson();
             return PartialView(await collection.ToListAsync());
         }
-        
+
         public JsonResult GetListTaiXe()
         {
             List<TaiXe> dsTaiXe = entityBarg.TaiXes.ToList();
             return Json(dsTaiXe);
         }
-        
+
         // GET: KhachHangs/Details/5
         public ActionResult Details(int? id)
         {
@@ -56,7 +48,7 @@ namespace SignalRWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            
+
             return View(khachHang);
         }
 
