@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Details";
     //Layout = "~/Views/Shared/_Layout.cshtml";
-    var list = ViewBag.dsTaiXe;
 }
 
 <style>
@@ -105,7 +104,7 @@
             geocodeAddress(geocoder, map);
         });
 
-       
+
         var locations = [];
         $.ajax({
             type: 'post',
@@ -142,7 +141,7 @@
         });
         //------ end add marker-------
     }
-    
+
     function geocodeAddress(geocoder, resultsMap) {
         var address = document.getElementById('address').value;
         geocoder.geocode({ 'address': address }, function (results, status) {
