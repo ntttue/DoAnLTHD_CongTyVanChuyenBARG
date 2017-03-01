@@ -153,7 +153,12 @@
                     animation: google.maps.Animation.DROP,
                     position: results[0].geometry.location
                 });
-                marker.addListener('click', toggleBounce);
+                marker.addListener('click', geocodePosition(marker.getPosition()));
+
+                google.maps.event.addListener(marker, 'dragend', function () {
+                    geocodePosition(marker.getPosition());
+                });
+
                 function toggleBounce() {
                     if (marker.getAnimation() !== null) {
                         marker.setAnimation(null);
@@ -161,12 +166,40 @@
                         marker.setAnimation(google.maps.Animation.BOUNCE);
                     }
                 }
+                function geocodePosition(pos) {
+                    var msg = "";
+                    geocoder.geocode({
+                        latLng: pos
+                    }, function (responses) {
+                        if (responses && responses.length > 0) {
+                            msg = 'Location : ' + responses[0].formatted_address + '<br/> ';
+                            msg = msg + 'Latitude : ' + pos.lat() + '<br/> ';
+                            msg = msg + 'Longitude : ' + pos.lng() + '<br/> ';
+                            attachMessage(marker, msg);
+                        } else {
+                            msg = 'Cannot determine address at this location.';
+                            attachMessage(marker, msg);
+                        }
+                    });
+
+                }
+                function attachMessage(marker, msg) {
+                    var infowindow = new google.maps.InfoWindow({
+                        content: msg,
+                        size: new google.maps.Size(120, 150)
+                    });
+                    google.maps.event.clearListeners(marker, 'click');
+                    google.maps.event.addListener(marker, 'click', function () {
+                        infowindow.open(map, marker);
+                    });
+                }
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
         });
 
     }
+
 
 </script>
 <script async defer
