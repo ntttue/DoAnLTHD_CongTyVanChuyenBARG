@@ -93,7 +93,7 @@
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 18,
-            center: { lat: -34.397, lng: 150.644 }
+            center: { lat: 10.756582, lng: 106.630871 }
         });
         var geocoder = new google.maps.Geocoder();
 
@@ -102,6 +102,33 @@
         document.getElementById('submit').addEventListener('click', function () {
             geocodeAddress(geocoder, map);
         });
+
+        //add marker
+        var locations = [
+                          ['Hello!!', 10.758289, 106.630539, 1],
+                          ['Em iu!!', 10.757846, 106.631032, 2]
+        ];
+
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, i;
+
+        for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map,
+                icon: "/img/user-17-48.png"
+            });
+
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                return function () {
+                    infowindow.setContent(locations[i][0]);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+        }
+
+        //------ end add marker-------
     }
 
     function geocodeAddress(geocoder, resultsMap) {
