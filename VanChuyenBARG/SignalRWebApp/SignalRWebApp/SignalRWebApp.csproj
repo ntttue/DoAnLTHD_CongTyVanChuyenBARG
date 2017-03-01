@@ -227,7 +227,12 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="img\87-48.png" />
+    <Content Include="img\Bike-48.png" />
+    <Content Include="img\icon.png" />
     <Content Include="img\images.jpg" />
+    <Content Include="img\user-17-48.png" />
+    <Content Include="img\user-17-64.png" />
     <Content Include="Models\BargEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BargEntity.edmx</DependentUpon>

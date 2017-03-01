@@ -3,7 +3,9 @@
 @{
     ViewBag.Title = "Details";
     //Layout = "~/Views/Shared/_Layout.cshtml";
+    var list = ViewBag.dsTaiXe;
 }
+
 <style>
     /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -56,11 +58,11 @@
                         <dd>
                             @if (Model.LoaiXe == 1)
                             {
-                            <span>PREMIUM</span>
+                                <span>PREMIUM</span>
                             }
                             else
                             {
-                            <span>Thường</span>
+                                <span>Thường</span>
                             }
                         </dd>
                         <dt>Tình trạng: </dt>
@@ -103,34 +105,44 @@
             geocodeAddress(geocoder, map);
         });
 
-        //add marker
-        var locations = [
-                          ['Hello!!', 10.758289, 106.630539, 1],
-                          ['Em iu!!', 10.757846, 106.631032, 2]
-        ];
-
-        var infowindow = new google.maps.InfoWindow();
-
-        var marker, i;
-
-        for (i = 0; i < locations.length; i++) {
-            marker = new google.maps.Marker({
-                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                map: map,
-                icon: "/img/user-17-48.png"
-            });
-
-            google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                return function () {
-                    infowindow.setContent(locations[i][0]);
-                    infowindow.open(map, marker);
+       
+        var locations = [];
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            url: '/KhachHangs/GetListTaiXe',
+            success: function (result) {
+                for (var i = 0; i < result.length; i++) {
+                    var data = [];
+                    data.push(result[i].HoTen);
+                    data.push(result[i].Lat);
+                    data.push(result[i].Lng);
+                    data.push(result[i].id);
+                    locations.push(data);
                 }
-            })(marker, i));
-        }
 
+                //add marker
+                var infowindow = new google.maps.InfoWindow();
+                var marker, i;
+                for (i = 0; i < locations.length; i++) {
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                        map: map,
+                        icon: "/img/user-17-48.png"
+                    });
+
+                    google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                        return function () {
+                            infowindow.setContent(locations[i][0]);
+                            infowindow.open(map, marker);
+                        }
+                    })(marker, i));
+                }
+            }
+        });
         //------ end add marker-------
     }
-
+    
     function geocodeAddress(geocoder, resultsMap) {
         var address = document.getElementById('address').value;
         geocoder.geocode({ 'address': address }, function (results, status) {

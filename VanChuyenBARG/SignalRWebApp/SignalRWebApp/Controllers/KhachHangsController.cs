@@ -8,6 +8,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace SignalRWebApp.Controllers
 {
@@ -20,6 +21,7 @@ namespace SignalRWebApp.Controllers
         //}
 
         private VCBargContext db = new VCBargContext();
+        private VanChuyenBargEntities entityBarg = new VanChuyenBargEntities();
 
         public async Task<ActionResult> Index()
         {
@@ -35,6 +37,11 @@ namespace SignalRWebApp.Controllers
             return PartialView(await collection.ToListAsync());
         }
         
+        public JsonResult GetListTaiXe()
+        {
+            List<TaiXe> dsTaiXe = entityBarg.TaiXes.ToList();
+            return Json(dsTaiXe);
+        }
         
         // GET: KhachHangs/Details/5
         public ActionResult Details(int? id)
@@ -43,11 +50,13 @@ namespace SignalRWebApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             KhachHang khachHang = db.KhachHangs.Find(id);
             if (khachHang == null)
             {
                 return HttpNotFound();
             }
+            
             return View(khachHang);
         }
 

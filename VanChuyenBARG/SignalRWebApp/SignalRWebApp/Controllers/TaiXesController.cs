@@ -124,5 +124,13 @@ namespace SignalRWebApp.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public JsonResult AjaxGetList(string name)
+        {
+            List<TaiXe> dsTaiXe = new List<TaiXe>();
+            dsTaiXe = db.TaiXes.ToList();
+            return Json(dsTaiXe);
+        }
     }
 }
