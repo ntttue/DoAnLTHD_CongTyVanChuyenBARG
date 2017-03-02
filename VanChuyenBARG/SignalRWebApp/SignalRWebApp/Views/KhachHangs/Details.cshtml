@@ -90,7 +90,24 @@
     </div>
 </div>
 
+@section scripts {
+
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    @*<script type="text/javascript">
+            $(function goi() {
+                var chatHub = $.connection.chatHub;
+                $.connection.hub.start().done(function () {
+                    chatHub.server.send("1", "Có khách");
+
+                });
+
+            });
+        </script>*@
+}
+
 <script>
+    var centerPosition;
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 18,
@@ -123,17 +140,32 @@
                 //add marker
                 var infowindow = new google.maps.InfoWindow();
                 var marker, i;
+
+                if (centerPosition == null)
+                    centerPosition = map.getCenter();
+
+
                 for (i = 0; i < locations.length; i++) {
                     marker = new google.maps.Marker({
                         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                         map: map,
+                        type: "mymarker",
                         icon: "/img/user-17-48.png"
                     });
 
                     google.maps.event.addListener(marker, 'click', (function (marker, i) {
                         return function () {
-                            infowindow.setContent(locations[i][0]);
+                            infowindow.setContent("Tài Xế : " + locations[i][0]);
                             infowindow.open(map, marker);
+                            console.log(locations[i][3]);
+                            $(function goi() {
+                                var chatHub = $.connection.chatHub;
+                                $.connection.hub.start().done(function () {
+                                    chatHub.server.sendPrivate("1", "Có khách");
+                                });
+
+                            });
+
                         }
                     })(marker, i));
                 }
@@ -153,6 +185,7 @@
                     animation: google.maps.Animation.DROP,
                     position: results[0].geometry.location
                 });
+                centerPosition = marker.getPosition();
                 marker.addListener('click', geocodePosition(marker.getPosition()));
 
                 google.maps.event.addListener(marker, 'dragend', function () {
