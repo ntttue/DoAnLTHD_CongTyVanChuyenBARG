@@ -5,57 +5,38 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="row panel panel-default">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Tài xế: @Model.HoTen</h3>
 
-<div>
-    <h4>TaiXe</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.HoTen)
-        </dt>
+            </div>
+            <div class="panel-body ">
+                <div class="col-sm-12">
+                    <div class="col-sm-12 text-center">
+                        <a class="btn btn-primary" href="javascript:void(0)">@Model.HoTen</a>
+                    </div>
+                    <dl class="dl-horizontal col-sm-6">
+                        <dt>Lat: </dt>
+                        <dd> @Html.DisplayFor(model => model.Lat)</dd>
+                    </dl>
+                    <dl class="dl-horizontal col-sm-6">
+                        <dt>Lng: </dt>
+                        <dd> @Html.DisplayFor(model => model.Lng)</dd>
+                    </dl>
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.HoTen)
-        </dd>
+            <div id="viewNotification">
+                <ul id="lstChat"></ul>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Lat)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Lat)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Lng)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Lng)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TrangThai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TrangThai)
-        </dd>
-
-    </dl>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-<div>
-    <input type="text" id="txtMessage" />
-    <input type="button" id="btnSend" value="Send" />
-    <input type="hidden" id="txtUserName" />
 
-    <ul id="lstChat"></ul>
-</div>
+
 @section scripts {
 
     <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
@@ -70,23 +51,26 @@
                     '<li>' + userName + ':' + message + '</li>');
 
             };
-            chatHub.client.NotifyForSomeOne = function (message) {
+            chatHub.client.notifyForSomeOne = function (message) {
 
-                $('#lstChat').append(
-                    '<li>' + "Có khách" + ':' + message + '</li>');
-
+                var action = myFunction(message);
+                function myFunction(message) {
+                    var txt;
+                    var r = confirm("Có khách: \n \n Chọn \'OK\' để nhận -  \' Cancel\' Từ chối");
+                    if (r == true) {
+                        txt = "Chấp nhận";
+                    } else {
+                        txt = "Từ chối";
+                    }
+                    return txt
+                    document.getElementById("demo").innerHTML = txt;
+                    
+                }
+                $('#lstChat').append("<li> Có khách: " + message + "</li> <li>- Bạn vừa: " + action + " </li>");
             };
 
-            $('#txtUserName').val(prompt('Enter your name:', ''));
-
             $.connection.hub.start().done(function () {
-
-                chatHub.server.connect($('#txtUserName').val());
-
-                $('#btnSend').click(function () {
-                    chatHub.server.send($('#txtUserName').val()
-                        , $('#txtMessage').val());
-                });
+                chatHub.server.connect('@Model.id');
             });
 
         });

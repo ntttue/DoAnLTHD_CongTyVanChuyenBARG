@@ -21,6 +21,42 @@ namespace SignalRWebApp.Controllers
             return View(await db.TaiXes.ToListAsync());
         }
 
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(LoginModel login)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = (from userlist in db.TaiXes
+                            where userlist.usename == login.UserName && userlist.pass == login.Password
+                            select new
+                            {
+                                userlist.id,
+                                userlist.usename
+                            }).ToList();
+                if (user.FirstOrDefault() != null)
+                {
+                    Session["UserName"] = user.FirstOrDefault().usename;
+                    Session["UserID"] = user.FirstOrDefault().id;
+                    return Redirect("/TaiXes/Details/" + user.FirstOrDefault().id);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid login credentials.");
+                }
+            }
+            return View(login);
+        }
+
+        public ActionResult WelcomePage()
+        {
+            return View();
+        }
+
         // GET: TaiXes/Details/5
         public async Task<ActionResult> Details(int? id)
         {

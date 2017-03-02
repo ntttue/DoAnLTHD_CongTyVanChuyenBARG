@@ -161,7 +161,8 @@
                             $(function goi() {
                                 var chatHub = $.connection.chatHub;
                                 $.connection.hub.start().done(function () {
-                                    chatHub.server.sendPrivate("1", "Có khách");
+                                    var mess = ( '@Model.HoTen - @Model.DiaChiDon - @Model.GhiChu');
+                                    chatHub.server.sendPrivate(locations[i][3], mess);
                                 });
 
                             });
