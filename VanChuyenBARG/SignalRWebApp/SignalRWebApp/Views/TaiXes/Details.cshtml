@@ -36,8 +36,28 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Khách hàng</h4>
+            </div>
+            <div class="modal-body">
+                <p id="myMess"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Từ chối</button>
+                <button type="button" class="btn btn-primary">Chấp nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @section scripts {
+
 
     <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
     <script src="~/signalr/hubs"></script>
@@ -53,26 +73,39 @@
             };
             chatHub.client.notifyForSomeOne = function (message) {
 
-                var action = myFunction(message);
-                function myFunction(message) {
-                    var txt;
-                    var r = confirm("Có khách: \n \n Chọn \'OK\' để nhận -  \' Cancel\' Từ chối");
-                    if (r == true) {
-                        txt = "Chấp nhận";
-                    } else {
-                        txt = "Từ chối";
-                    }
-                    return txt
-                    document.getElementById("demo").innerHTML = txt;
-                    
-                }
-                $('#lstChat').append("<li> Có khách: " + message + "</li> <li>- Bạn vừa: " + action + " </li>");
+                //var action = myFunction(message);
+                alert("Có khách!!!!");
+                //function myFunction(message) {
+                //    var txt;
+                //    var r = confirm("Có khách!!!!");
+                //    if (r == true) {
+                //        txt = "Chấp nhận";
+                //    } else {
+                //        txt = "Từ chối";
+                //    }
+                //    return txt
+                //    document.getElementById("demo").innerHTML = txt;
+
+                //}
+                $("#myMess").append("<h3> Có khách: " + message + "</h3>");
+                $('#myModal').modal('show');
+                $('#lstChat').append("<li> Có khách: " + message + "</li>");
+
             };
 
             $.connection.hub.start().done(function () {
                 chatHub.server.connect('@Model.id');
             });
 
+        });
+        $(document).ready(function () {
+
+            // Attach Button click event listener 
+            $("#myBtn").click(function () {
+
+                // show Modal
+                $('#myModal').modal('show');
+            });
         });
     </script>
 }
