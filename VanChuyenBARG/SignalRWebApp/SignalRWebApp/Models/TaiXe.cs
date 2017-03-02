@@ -19,5 +19,7 @@ namespace SignalRWebApp.Models
         public Nullable<decimal> Lat { get; set; }
         public Nullable<decimal> Lng { get; set; }
         public Nullable<bool> TrangThai { get; set; }
+        public string usename { get; set; }
+        public string pass { get; set; }
     }
 }
