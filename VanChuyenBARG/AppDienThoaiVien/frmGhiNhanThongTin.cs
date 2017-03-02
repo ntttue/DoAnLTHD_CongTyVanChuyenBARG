@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,7 +20,37 @@ namespace AppDienThoaiVien
         private KhachHang kh = new KhachHang();
         public frmGhiNhanThongTin()
         {
+            //if (!ServerStatusBy("http://localhost:4771/"))
+            //{
+            //    MessageBox.Show("Hiện tại server chưa sẵn sàng, vui lòng quay lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
             InitializeComponent();
+           
+        }
+        public static Boolean  ServerStatusBy(string url)
+        {
+            try
+            {
+                var myRequest = (HttpWebRequest)WebRequest.Create(url);
+
+                var response = (HttpWebResponse)myRequest.GetResponse();
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+                //  not available at all, for some reason
+                Debug.Write(string.Format("{0} unavailable: {1}", url, ex.Message));
+            }
         }
         public void callServer()
         {
@@ -31,23 +64,7 @@ namespace AppDienThoaiVien
                     string url = "http://localhost:4771/api/KhachHangs";
                     var response = c.PostAsJsonAsync(url, kh).Result;
 
-                    MessageBox.Show(response.ToString());
-
-
-                    //string url = "http://localhost:1898/api/simple/catList";
-
-                    ////string str =
-                    ////    c.GetStringAsync(url).Result;
-                    ////Console.WriteLine(str);
-
-                    //var response = c.GetAsync(url).Result;
-                    //if (response.StatusCode == System.Net.HttpStatusCode.OK) {
-                    //    var list = response.Content
-                    //        .ReadAsAsync<DanhMuc[]>()
-                    //        .Result;
-
-                    //    Console.WriteLine("done");
-                    //}
+                    MessageBox.Show("Đã gửi", "Thông báo",  MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
             }
@@ -67,6 +84,23 @@ namespace AppDienThoaiVien
             kh.ThoiDiemDat = DateTime.Now;
             kh.TinhTrang = "Chưa xử lý";
             this.callServer();
+            ClearTextBoxes();
+        }
+
+        private void ClearTextBoxes()
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                    if (control is TextBox)
+                        (control as TextBox).Clear();
+                    else
+                        func(control.Controls);
+            };
+
+            func(Controls);
         }
     }
 
