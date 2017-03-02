@@ -28,7 +28,7 @@
             </td>
             <td>
                 @*@Html.DisplayFor(modelItem => item.LoaiXe)*@
-                @if (item.LoaiXe == 1 )
+                @if (item.LoaiXe == 1)
                 {
                     <span>PREMIUM</span>
                 }
@@ -47,12 +47,14 @@
                 @Html.DisplayFor(modelItem => item.TinhTrang)
             </td>
             <td>
-                @*<a class="btn btn-primary" href="/KhachHangs/Details/26">Tìm xe</a>*@
-                @*@Html.ActionLink("Edit", "Edit", new { id = item.id }, htmlAttributes: new { @class = "btn btn-primary" })*@
-                @Html.ActionLink("Tìm xe", "Details", new { id = item.id, controller = "KhachHangs" }, htmlAttributes: new { @class = "btn btn-primary" , target = "_blank" }) 
-                @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                @{
+                    if (item.TinhTrang.Equals("Chưa xử lý"))
+                    {
+                        @Html.ActionLink("Tìm xe", "Details", new { id = item.id, controller = "KhachHangs" }, htmlAttributes: new { @class = "btn btn-primary", target = "_blank" })
+                    }
+                }
             </td>
         </tr>
-    }
+                    }
 
 </table>
