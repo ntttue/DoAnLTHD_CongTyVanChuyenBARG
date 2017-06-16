@@ -3,45 +3,40 @@
 @{
     ViewBag.Title = "Login";
 }
-<h2>
-    Login
-</h2>
+<h2>Đăng nhập</h2>
+
 @using (Html.BeginForm())
 {
 
     @Html.ValidationSummary(true)
 
     <div style="border: solid 1px #ccc; padding: 30px 0 30px 30px; border-radius: 5px;
-        width: 325px; margin: auto; display: table;">
-        <table>
+        width: 500px; margin: auto; display: table;">
+        <table class="table">
             <tr>
-                <td valign="top">
-                    @Html.LabelFor(model => model.UserName)
-                </td>
+                <td valign="top">Tên đăng nhập: </td>
                 <td>
-                    @Html.EditorFor(model => model.UserName)
+                    @Html.EditorFor(model => model.UserName, new { @class = "form-control" })
                     <div style="height: 20px;">
                         @Html.ValidationMessageFor(model => model.UserName)
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td valign="top">
-                @Html.LabelFor(model => model.Password)
-            </td>
-            <td>
-                @Html.EditorFor(model => model.Password)
-                <div style="height: 20px;">
-                    @Html.ValidationMessageFor(model => model.Password)
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <input type="submit" value="Login" />
-        </td>
-    </tr>
-</table>
-</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">Mật khẩu:</td>
+                <td>
+                    @Html.EditorFor(model => model.Password, new { @class = "form-control" })
+                    <div style="height: 20px;">
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Đăng Nhập" class="btn btn-primary" />
+                </td>
+            </tr>
+        </table>
+    </div>
 }
