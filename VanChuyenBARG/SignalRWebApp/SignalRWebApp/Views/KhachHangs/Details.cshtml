@@ -68,8 +68,10 @@
                         <dd>@Html.DisplayFor(model => model.TinhTrang)</dd>
                     </dl>
                 </div>
-
                 <div class="col-sm-12 text-center">
+                    @Html.ActionLink("Đã có xe nhận", "Index", null, htmlAttributes: new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Đang di chuyển", "Index", null, htmlAttributes: new { @class = "btn btn-info" })
+                    @Html.ActionLink("Đã hoàn thành", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
                     @Html.ActionLink("Trở về danh sách", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
                 </div>
             </div>
