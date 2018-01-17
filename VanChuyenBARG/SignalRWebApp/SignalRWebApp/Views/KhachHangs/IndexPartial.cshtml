@@ -48,7 +48,7 @@
             </td>
             <td>
                 @{
-                    if (item.TinhTrang.Equals("Chưa xử lý"))
+                    if (item.TinhTrang.Equals("Chưa được định vị"))
                     {
                         @Html.ActionLink("Tìm xe", "Details", new { id = item.id, controller = "KhachHangs" }, htmlAttributes: new { @class = "btn btn-primary", target = "_blank" })
                     }

@@ -44,7 +44,7 @@ namespace SignalRWebApp.Controllers
             }
 
             KhachHang khachHang = db.KhachHangs.Find(id);
-            khachHang.TinhTrang = "Đang xử lý";
+            khachHang.TinhTrang = "Đã định vị xong,";
             db.SaveChanges();
 
             if (khachHang == null)
