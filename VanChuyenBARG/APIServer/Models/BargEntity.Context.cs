@@ -26,5 +26,6 @@ namespace APIServer.Models
         }
     
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
+        public virtual DbSet<TaiXe> TaiXes { get; set; }
     }
 }
