@@ -36,6 +36,7 @@
             <div class="panel-body ">
                 <div class="col-sm-12">
                     <dl class="dl-horizontal col-sm-6">
+                        @Html.HiddenFor(model => model.id)
                         <dt>Họ tên: </dt>
                         <dd>@Html.DisplayFor(model => model.HoTen)</dd>
 
@@ -69,9 +70,9 @@
                     </dl>
                 </div>
                 <div class="col-sm-12 text-center">
-                    @Html.ActionLink("Đã có xe nhận", "Index", null, htmlAttributes: new { @class = "btn btn-danger" })
-                    @Html.ActionLink("Đang di chuyển", "Index", null, htmlAttributes: new { @class = "btn btn-info" })
-                    @Html.ActionLink("Đã hoàn thành", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
+                    <button name="" class="btn btn-danger" onclick="ChangeState('Đã có xe nhận')">Đã có xe nhận</button>
+                    <button name="" class="btn btn-warning" onclick="ChangeState('Đang di chuyển')">Đang di chuyển</button>
+                    <button name="" class="btn btn-success" onclick="ChangeState('Đã hoàn thành')">Đã hoàn thành</button>
                     @Html.ActionLink("Trở về danh sách", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
                 </div>
             </div>
@@ -95,6 +96,31 @@
 
     <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
     <script src="~/signalr/hubs"></script>
+    <script type="text/javascript">
+        function ChangeState(status) {
+            var serviceURL = '/KhachHangs/ChangeStatus';
+            var idValue = $("#id").val()
+            console.log(status);
+            console.log(idValue);
+            $.ajax({
+                type: "POST",
+                url: serviceURL,
+                data: '{"id":"' + idValue + '","status":"' + status + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(data, status) {
+                alert(data);
+            }
+
+            function errorFunc() {
+                alert('error');
+            }
+        };
+    </script>
     @*<script type="text/javascript">
             $(function goi() {
                 var chatHub = $.connection.chatHub;

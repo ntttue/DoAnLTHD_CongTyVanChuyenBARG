@@ -44,7 +44,7 @@ namespace SignalRWebApp.Controllers
             }
 
             KhachHang khachHang = db.KhachHangs.Find(id);
-            khachHang.TinhTrang = "Đã định vị xong,";
+            khachHang.TinhTrang = "Đã định vị xong";
             db.SaveChanges();
 
             if (khachHang == null)
@@ -68,6 +68,14 @@ namespace SignalRWebApp.Controllers
                 return HttpNotFound();
             }
             return View(khachHang);
+        }
+        [HttpPost]
+        public ActionResult ChangeStatus(int id, string status)
+        {
+            KhachHang khachHang = db.KhachHangs.Find(id);
+            khachHang.TinhTrang = status;
+            db.SaveChanges();
+            return Json(status, JsonRequestBehavior.AllowGet);
         }
 
         // POST: KhachHangs/Edit/5
@@ -94,6 +102,8 @@ namespace SignalRWebApp.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 
 }
